@@ -1,0 +1,66 @@
+<html>
+<head>
+    <title>subtract</title>
+    
+    <style>
+        textarea {
+            width:30%;
+            height:80%;
+        }
+        
+        button#subtractbutton {
+            width:90%
+        }
+        
+        div#content {
+            width: 100%;
+            text-align: center
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Subtract strings from strings...</h1>
+    <p>Version 1.0 by Ren&eacute; Tronsgaard Rasmussen</p>
+    <div id="content">
+        <textarea id="input">list
+of
+strings</textarea>
+        <textarea id="subtract">strings
+that
+you
+want
+to
+subtract</textarea>
+        <textarea id="result"></textarea>
+        <button id="subtractbutton" onClick="subtract()">Subtract!</button>
+    </div>
+
+    <script>
+        inputfield    = document.getElementById("input")
+        subtractfield = document.getElementById("subtract")
+        resultfield   = document.getElementById("result")
+        
+        function subtract(){
+            // Split for every line
+            inputlines = inputfield.value.split("\n");
+            subtractlines = subtractfield.value.split("\n");
+            resultlines = inputlines
+            // Loop over strings to subtract
+            for (i=0; i < subtractlines.length; i++){
+                k = resultlines.indexOf(subtractlines[i])
+                while (k != -1){
+                    resultlines.splice(k,1)
+                    k = resultlines.indexOf(subtractlines[i])
+                }
+            }
+            resultfield.value = resultlines.join("\n")
+        }
+        
+        // Run the script at load for demo purpose
+        subtract()
+        
+    </script>
+
+</body>
+</html>
